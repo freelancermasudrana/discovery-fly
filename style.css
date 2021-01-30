@@ -126,3 +126,27 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+#summery-page{
+    display: none;
+}
+
+div#summery-page span#total-taka {
+    background-color: #cabe38;
+    padding: 10px 56px;
+    border-radius: 10px;
+    color:#b60fe9;
+    font-weight: bold;
+}
+
+div#summery-page h1 {
+    color: #e07a67;
+}
+.summery-page {
+    width: 520px;
+    height: 360px;
+    background-color: #ddd;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 15px;
+    padding: 69px 0px;
+}

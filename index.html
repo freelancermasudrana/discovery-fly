@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <div id="wrapper">
     <!--Header and Menu Section-->
     <header class="container">
         <nav>
@@ -81,7 +82,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p id="sub-total">$500</p>
+                        <p id="sub-total">$00</p>
                     </div>
                 </div>
 
@@ -90,7 +91,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p id="tax">$50</p>
+                        <p id="tax">$0</p>
                     </div>
                 </div>
                 <hr>
@@ -99,7 +100,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p id="grand-total">$550</p>
+                        <p id="grand-total">$0</p>
                     </div>
                 </div>
             </div>
@@ -113,28 +114,38 @@
                 voluptatibus quam</p>
         </div>
         </section>
+    </div>
+    <div id="summery-page" class="summery-page mt-5">
+        <h1>Thanks for Your Booking</h1>
+        <h5>Summery of Your Ticket</h5>
+        <p>Ticket Price = <span id="subTotal">00</span></p>
+        <p>Total Tax = <span id="total-tax">00</span></p>
+        <p>Grand Total = <span id="total-taka">00</span></p>
+    </div>
+
+
 
         <!--Thank You-->
 
 
         <script>
-            function ticketChange(isTicket,product) {
-                const econoCount = document.getElementById(product + '-count');
-                const econoCountNumber = parseInt(econoCount.value);
-                let totalTicket = econoCountNumber;
+            function ticketChange(isTicket,ticket) {
+                const ticketCount = document.getElementById(ticket + '-count');
+                const ticketCountNumber = parseInt(ticketCount.value);
+                let totalTicket = ticketCountNumber;
                 if (isTicket == true) {
-                    totalTicket = econoCountNumber + 1;
+                    totalTicket = ticketCountNumber + 1;
                 }
-                else if (isTicket == false && econoCountNumber> 0) {
-                    totalTicket = econoCountNumber - 1;
+                else if (isTicket == false && ticketCountNumber> 0) {
+                    totalTicket = ticketCountNumber - 1;
                 }
                 let subTotal = totalTicket;
-                if(product=='firstClass'){
+                if(ticket=='firstClass'){
                     subTotal = totalTicket *150;
-                }else if(product=='econoClass'){
+                }else if(ticket=='econoClass'){
                     subTotal = totalTicket *100;
                 }
-                document.getElementById(product + '-count').value = totalTicket;
+                document.getElementById(ticket + '-count').value = totalTicket;
                 calculate()
             }
             function calculate(){
@@ -143,19 +154,31 @@
 
                 const totalTicketPrice =firstClassNumber*150+econoClassNumber*100;
                 document.getElementById('sub-total').innerText= '$' + totalTicketPrice;
+                //below (subTotal) for summery page and ========up (sub-total) for mainpage 
+                document.getElementById('subTotal').innerText= '$' + totalTicketPrice;
                 const tax = totalTicketPrice*0.1;
                 document.getElementById('tax').innerText='$' + tax;
+                //below (total-tax) for summery page and ========up (tax) for mainpage 
+                document.getElementById('total-tax').innerText='$' + tax;
                 const grandTotal = totalTicketPrice + tax;
                 document.getElementById('grand-total').innerText='$' + grandTotal;
+                //below (total-taka) for summery page and ========up (grand-total)for mainpage 
+                document.getElementById('total-taka').innerText='$' + grandTotal;
 
             }
-            function getInputValue(product){
-                const econoClass = document.getElementById(product + '-count');
+            function getInputValue(ticket){
+                const econoClass = document.getElementById(ticket + '-count');
                 const econoClassNumber = parseInt(econoClass.value);
                 return econoClassNumber;
             }
+            //below click handler for main page hidden and summerpage showing
             document.getElementById('book-now').addEventListener('click',function(){
-                document.getElementById('grand-total')
+            const wrapper = document.getElementById('wrapper');
+            wrapper.style.display="none";
+            const welcomePage =document.getElementById('summery-page');
+            welcomePage.style.display='block';
+
+            
             })
 
 
